@@ -38,28 +38,29 @@ public class Port {
 
 
 	public boolean lockBerth(Ship ship) throws InterruptedException {
-		//boolean result = false;
+		boolean result = false;
 		Berth berth = null;
 		//!!!!!!!!!
 		synchronized (berthList) {
 			if(berthList.isEmpty()){
 				berthList.wait();
 			}
-			try {
-				berth = berthList.remove(0);
-			}
-			catch (IndexOutOfBoundsException ex){
-				return false;
+			//try{
+			berth = berthList.remove(0);
+			//}catch(IndexOutOfBoundException ex){
+			//return false;
+			//}
+
+		}
+
+		if (berth != null) {
+			result = true;
+			synchronized (usedBerths) {
+				usedBerths.put(ship, berth);
 			}
 		}
-		
-		synchronized (usedBerths) {
-			usedBerths.put(ship, berth);
-		}
-	
-		return true;
-		
-		//return result;
+
+		return result;
 	}
 
 	public boolean unlockBerth(Ship ship) {

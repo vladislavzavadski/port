@@ -38,33 +38,16 @@ public class Main {
 		}
 		Ship ship3 = new Ship("Ship3", port, 90);
 		ship3.setContainersToWarehouse(containerList);
-		containerList = new ArrayList<Container>(warehousePortSize);
-		for (int i=0; i<warehousePortSize; i++){
-			containerList.add(new Container(i+120));
-		}
-		Ship ship4 = new Ship("Ship4", port, 90);
-		ship3.setContainersToWarehouse(containerList);
-
-		containerList = new ArrayList<Container>(warehousePortSize);
-		for (int i=0; i<warehousePortSize; i++){
-			containerList.add(new Container(i+150));
-		}
-		Ship ship5 = new Ship("Ship5", port, 90);
-		ship3.setContainersToWarehouse(containerList);
 
 		new Thread(ship1).start();		
 		new Thread(ship2).start();
 		new Thread(ship3).start();
-		new Thread(ship4).start();
-		new Thread(ship5).start();
 
 		Thread.sleep(20000);
 		
 		ship1.stopThread();
 		ship2.stopThread();
 		ship3.stopThread();
-		ship4.stopThread();
-		ship5.stopThread();
 
 	}
 
