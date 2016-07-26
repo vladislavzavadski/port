@@ -13,7 +13,6 @@
     <Loggers>
         <Logger name= "port" level="error" additivity="false">
             <AppenderRef ref="Console"/>
-
         </Logger>
         <!-- Root Logger -->
         <Root level="debug" additivity="false">

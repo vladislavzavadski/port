@@ -16,7 +16,6 @@ public class Port {
 	private List<Berth> berthList; // очередь причалов
 	private Warehouse portWarehouse; // хранилище порта
 	private Map<Ship, Berth> usedBerths; // какой корабль у какого причала стоит
-
 	public Port(int berthSize, int warehouseSize) {
 		portWarehouse = new Warehouse(warehouseSize); // создаем пустое
 														// хранилище
@@ -42,15 +41,10 @@ public class Port {
 		Berth berth = null;
 		//!!!!!!!!!
 		synchronized (berthList) {
-			if(berthList.isEmpty()){
+			while (berthList.isEmpty()){
 				berthList.wait();
 			}
-			//try{
 			berth = berthList.remove(0);
-			//}catch(IndexOutOfBoundException ex){
-			//return false;
-			//}
-
 		}
 
 		if (berth != null) {
